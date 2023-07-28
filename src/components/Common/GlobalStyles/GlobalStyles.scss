@@ -1,0 +1,410 @@
+// Reset Css
+@import url('./ResetCss.css');
+// Font
+@font-face {
+    font-family: 'gamelord-regular';
+    src: url('../../../assets/font/Maven_Pro/MavenPro-Regular.ttf');
+}
+@font-face {
+    font-family: 'gamelord-medium';
+    src: url('../../../assets/font/Maven_Pro/MavenPro-Medium.ttf');
+}
+@font-face {
+    font-family: 'gamelord-bold';
+    src: url('../../../assets/font/Maven_Pro/MavenPro-Bold.ttf');
+}
+/* Root */
+:root {
+    --semi-black: #333;
+    --black: #111;
+    --white: #fff;
+    --deny: #ff4949;
+    --accept: #67d850;
+}
+* {
+    box-sizing: border-box;
+}
+/* Body, HTML */
+html,
+body {
+    height: 10000px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1;
+    font-family: 'gamelord-regular';
+    text-rendering: optimizeSpeed;
+    background-color: var(--semi-black);
+    color: var(--white);
+}
+/* Header CSS */
+#header {
+    z-index: 999;
+    position: fixed;
+    height: auto;
+    width: 100%;
+    background-color: var(--black);
+}
+.header__container {
+    height: 8em;
+    display: flex;
+    margin: 0 3em;
+}
+.header__logo {
+    display: inline-block;
+    cursor: pointer;
+    min-width: 20em;
+    height: 100%;
+}
+.logo__content {
+    background-image: url('../../../assets/img/game-heaven-high-resolution-logo-color-on-transparent-background.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+input {
+    border: none;
+    outline: none;
+    padding: 0;
+}
+.nav__container {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+.search-box {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--semi-black);
+    padding: 0.4rem 0.4rem 0.4rem 1.7rem;
+    border-radius: 5em;
+}
+#header .search-box {
+    margin: 0 3em;
+}
+.search-box:focus-within {
+    outline: #ffffff 2px solid;
+}
+.search-box .--icon {
+    font-size: 20px;
+    color: var(--white);
+}
+.search-box .search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.search-box .search-icon:hover {
+    background-color: var(--white);
+}
+.search-box .search-icon:hover .--icon {
+    color: var(--black);
+}
+.search-box input::placeholder {
+    color: var(--white);
+}
+.search-box input {
+    font-family: 'gamelord-regular';
+    font-size: 15px;
+    width: 28vw;
+    height: 2rem;
+    background-color: #fff0;
+    color: var(--white);
+}
+.btn {
+    font-family: 'gamelord-medium';
+    color: var(--semi-black);
+    font-size: 16px;
+    background-color: var(--white);
+    padding: 0.7em 1em;
+    border-radius: 1em;
+    cursor: pointer;
+    width: max-content;
+}
+.btn--signIn {
+    padding: 0 1em;
+    margin: auto 1em;
+    background: none;
+    color: var(--white);
+    border-radius: 0;
+    border-left: var(--white) 1px solid;
+}
+.btn--signIn:hover {
+    text-decoration: underline;
+}
+.btn--signUp {
+    background-color: #f00b51;
+    color: var(--white);
+}
+.btn--signUp:hover {
+    background-color: #ff2f6dc0;
+}
+.shopping-cart {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin: 0 1em;
+    justify-content: center;
+    background: none;
+    color: #fff;
+}
+.shopping-cart .info {
+}
+.shopping-cart--total {
+    font-size: 9px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 1.7rem;
+}
+.shopping-cart:hover .container,
+.shopping-cart .container:hover {
+    display: block;
+}
+.shopping-cart .container {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    width: 27rem;
+    height: 13rem;
+    background-color: #3e3e3e;
+    padding: 0.7rem;
+    right: 0;
+    top: 3.7rem;
+    border-radius: 0.2rem;
+}
+.btn--menu {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2em 0.4em;
+    border-radius: 0.6em;
+    background: #ffffff00;
+}
+.btn:hover {
+    background-color: #ffffff14;
+}
+.container--bottom {
+    justify-content: center;
+    font-family: 'gamelord-medium';
+    height: 3em;
+}
+.item__nav {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    font-size: 15px;
+    height: auto;
+}
+.nav__title-container {
+    cursor: pointer;
+    height: 100%;
+    line-height: 3rem;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+.nav__title-container:hover {
+    background-color: #ffffff41;
+}
+.nav__title-container {
+    display: inline-flex;
+    align-items: center;
+    margin: 0.3rem auto;
+    line-height: 2rem;
+    height: 3rem;
+    padding: 0.2rem 1em;
+}
+.title-container--title {
+    margin: 0 5px;
+}
+.title-container--logo {
+    font-size: 20px;
+    color: #ffc35f;
+}
+.nav__menu {
+    display: none;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 103px;
+    background-color: #111;
+}
+.menu--column {
+    flex-direction: column;
+}
+.item__nav-item {
+    display: inline-block;
+    margin: 0.7rem 0.5rem;
+    padding: 0.2em 0.7em;
+    line-height: 30px;
+}
+.item__nav.nav--open .nav__menu {
+    display: flex;
+    justify-content: center;
+}
+.item__nav-item:hover {
+    background-color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.nav--bottom {
+    display: flex;
+    align-items: center;
+}
+.nav--top {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'gamelord-medium';
+    height: 3em;
+}
+.header__menu {
+    z-index: 1;
+    top: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000006e;
+}
+.animation-y--show {
+    transform: translateX(100%);
+}
+.animation-y {
+    transition: transform 300ms;
+}
+.open--header-menu {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.header__menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 300ms, opacity 300ms linear;
+}
+.open--header-menu .menu__container {
+    transform: translateX(0) !important;
+}
+.header__menu .menu__container {
+    transform: translateX(-100%);
+    display: inline-flex;
+    width: 29rem;
+    height: 100%;
+    background-color: #111;
+    padding: 0 0.5rem;
+}
+.menu-close__btn {
+    width: min-content;
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+}
+.menu-close__btn:active {
+    background-color: #333;
+    border-radius: 0.5rem;
+}
+.header__menu .menu__container .nav__title-container {
+    margin: 0.3rem;
+}
+.header__menu .menu__container .content {
+    height: 100%;
+    overflow-y: auto;
+}
+.split-border {
+    display: block;
+    margin: 1rem auto;
+    width: 90%;
+    height: 1px;
+    background-color: #333;
+}
+.flex-dir-row {
+    flex-direction: row;
+}
+.flex-dir-col {
+    flex-direction: column;
+}
+.social--link {
+    margin: 0 1rem;
+}
+.social-container {
+    margin: 1rem 0;
+}
+.profile__avatar {
+    height: 3.8rem;
+    width: 3.8rem;
+    border-radius: 100%;
+}
+.profile__avatar:hover {
+    opacity: 70%;
+}
+.profile__box {
+    font-family: 'gamelord-medium';
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.avatar-size {
+    position: relative;
+    z-index: 1;
+    width: inherit;
+    height: inherit;
+    border-radius: 100%;
+}
+.profile__title {
+    width: 7rem;
+    font-size: 13px;
+    margin: 0 1rem;
+}
+.profile__box .plate {
+    position: relative;
+    top: -11px;
+    width: inherit;
+    height: 15px;
+    display: block;
+    border-radius: 100%;
+    background-color: #3e3e3e;
+}
+.content .profile__box {
+    margin: 1rem 1.3rem;
+    padding: 1rem;
+    background-color: #ffffff1a;
+    border-radius: 0.3rem;
+}
+.content .profile__box:hover {
+    background-color: #ffffff41;
+}
+.content .profile__title {
+    width: auto;
+    font-size: 15px;
+}
+@media only screen and (max-width: 1024px) {
+    /* .nav--top{
+        position: absolute;
+        flex-direction: column;
+        top: 0;
+        align-items: flex-start;
+        background-color: #111;
+        height: 100vh;
+        width: 250px;
+        right: 0;
+        z-index: 999;
+        justify-content: flex-start;
+        padding-top: 11rem;
+    }
+    .item__nav{
+        width: 100%;
+        height: auto;
+    }
+    .nav--top .title-container--logo {
+        font-size: 24px !important;
+    }
+    .nav__title-container {
+        margin: .3rem .5rem;
+    } */
+}

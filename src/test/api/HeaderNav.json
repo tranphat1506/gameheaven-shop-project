@@ -1,0 +1,95 @@
+{
+    "topNav" : [
+        {
+            "title" : "Giới thiệu",
+            "navClass" : "nav__welcome",
+            "logoAttributes": {
+                "logoName" : "info",
+                "fontSize" : 17,
+                "color" : "#ffc35f",
+                "fill" : 0,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "Thông tin liên lạc",
+            "navClass" : "nav__contact",
+            "logoAttributes": {
+                "logoName" : "alternate_email",
+                "fontSize" : 17,
+                "color" : "#ffc35f",
+                "fill" : 0,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "Trợ giúp",
+            "navClass" : "nav__help",
+            "logoAttributes": {
+                "logoName" : "help",
+                "fontSize" : 17,
+                "color" : "#ffc35f",
+                "fill" : 0,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "Giới thiệu bạn bè",
+            "navClass" : "nav__referral",
+            "logoAttributes": {
+                "logoName" : "person_add",
+                "fontSize" : 20,
+                "color" : "#ffc35f",
+                "fill" : 1,
+                "className" : "title-container--logo"
+            }
+        }
+    ],
+    "bottomNav": [
+        {
+            "title" : "Sản phẩm vừa xem",
+            "navClass" : "nav__history",
+            "logoAttributes": {
+                "logoName" : "history",
+                "fontSize" : 20,
+                "color" : "#ffc35f",
+                "fill" : 0,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "Sản phẩm giảm giá",
+            "navClass" : "nav__sales",
+            "logoAttributes": {
+                "logoName" : "celebration",
+                "fontSize" : 20,
+                "color" : "#ffc35f",
+                "fill" : 1,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "Nhập mã KM",
+            "navClass" : "nav__code-redeem",
+            "logoAttributes": {
+                "logoName" : "pin",
+                "fontSize" : 20,
+                "color" : "#ffc35f",
+                "fill" : 1,
+                "className" : "title-container--logo"
+            }
+        },
+        {
+            "title" : "GiveAway",
+            "navClass" : "nav__rewards",
+            "logoAttributes": {
+                "logoName" : "redeem",
+                "fontSize" : 20,
+                "color" : "#ffc35f",
+                "fill" : 1,
+                "className" : "title-container--logo"
+            }
+        }
+    ]
+    
+}
