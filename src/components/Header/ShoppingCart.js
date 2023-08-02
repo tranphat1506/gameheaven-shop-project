@@ -1,25 +1,92 @@
-import { useState } from 'react';
+import { useReducer, useRef, useState, useMemo } from 'react';
 import clsx from 'clsx';
 
+import Wrapper from '../Wrapper';
+import { ShoppingPopper } from '../Popper';
 import FontIcon from '../Common/FontIcon';
-import Tippy, { tippy } from '@tippyjs/react';
+// item format
+const item = {
+    itemName: '',
+    itemImageUrl: '',
+    itemPageUrl: '',
+    quantity: 0,
+    prices: {
+        isDiscount: false,
+        originalPrice: 0,
+        salePrice: 0,
+    },
+};
+// init
+const initStore = {
+    totalPrice: 0,
+    totalItem: 0,
+    store: [],
+};
+// actions
+const ADD_ITEM = 'add_item';
+const REMOVE_ITEM = 'remove_item';
+
+const addItem = (payload) => {
+    return {
+        type: ADD_ITEM,
+        payload,
+    };
+};
+
+const removeItem = (payload) => {
+    return {
+        type: REMOVE_ITEM,
+        payload,
+    };
+};
+
+const reducer = (state, action) => {
+    let newState;
+    const item = action.payload;
+    switch (action.type) {
+        case ADD_ITEM:
+            newState = {
+                ...state,
+                totalItem: state.totalItem + item.quantity,
+                totalPrice:
+                    state.totalPrice + item.quantity * item.prices.salePrice,
+                store: [...state.store, item],
+            };
+            break;
+        default:
+            throw new Error('Invalid action!');
+    }
+    console.log(newState);
+    return newState;
+};
+
 const ShoppingCart = () => {
-    const [itemsInCart, setItemsInCart] = useState(0);
-    const addItemToCart = (item = 1) => {
-        setItemsInCart(itemsInCart + 1);
-    };
-    const removeItemToCart = (item = 1) => {
-        setItemsInCart(itemsInCart - 1);
-    };
+    const ShoppingCartContainer = useRef(null);
+    const [store, dispatch] = useReducer(reducer, initStore);
     return (
-        <div className={clsx('shopping-cart', 'btn')} onClick={addItemToCart}>
-            <div className="info">
-                <FontIcon logoName={'shopping_bag'} fontSize={30} />
-                <span className="shopping-cart--total" style={{ visibility: !itemsInCart ? 'hidden' : 'visible' }}>
-                    {itemsInCart}
-                </span>
-            </div>
-            <div className="container"></div>
+        <div
+            ref={ShoppingCartContainer}
+            className={clsx('shopping-cart', 'btn')}
+        >
+            <Wrapper
+                ref={ShoppingCartContainer}
+                Component={ShoppingPopper}
+                refProps={{
+                    itemStore: [store, dispatch],
+                }}
+            >
+                <div className="info">
+                    <FontIcon logoName={'shopping_bag'} fontSize={30} />
+                    <span
+                        className="shopping-cart--total"
+                        style={{
+                            visibility: !store.totalItem ? 'hidden' : 'visible',
+                        }}
+                    >
+                        {store.totalItem}
+                    </span>
+                </div>
+            </Wrapper>
         </div>
     );
 };

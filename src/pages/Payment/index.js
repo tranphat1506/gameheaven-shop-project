@@ -1,1 +1,1 @@
-export { default as Home } from './Payment';
+export { default as Payment } from './Payment';

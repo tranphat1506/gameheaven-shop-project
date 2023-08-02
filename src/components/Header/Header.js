@@ -18,10 +18,15 @@ const Header = () => {
     const redirectHome = () => {
         return (window.location.href = '/');
     };
+    console.log('re-render');
     return (
         <header id="header">
             <div className="header__container">
-                <a href="/" className={clsx('header__logo', 'logo__content')} onClick={redirectHome}></a>
+                <a
+                    href="/"
+                    className={clsx('header__logo', 'logo__content')}
+                    onClick={redirectHome}
+                ></a>
                 <div className="nav__container">
                     <div className="nav--top">
                         {API__HeaderNav.topNav.map((navInfo, index) => {
@@ -30,17 +35,28 @@ const Header = () => {
                     </div>
                     <div className="nav--bottom">
                         <SearchBox />
-                        <div className="profile__box" title="Đăng nhập / Đăng ký">
+                        <div
+                            className="profile__box"
+                            title="Đăng nhập / Đăng ký"
+                        >
                             <div className="profile__avatar">
-                                <img className="avatar-size" src="/man.png" alt="avatar"></img>
+                                <img
+                                    className="avatar-size"
+                                    src="/man.png"
+                                    alt="avatar"
+                                ></img>
                                 <span className="plate"></span>
                             </div>
-                            <div className="profile__title">Đăng nhập / Đăng ký</div>
+                            <div className="profile__title">
+                                Đăng nhập / Đăng ký
+                            </div>
                         </div>
                         <ShoppingCart />
                         <BtnOpen
                             className={'btn--menu btn'}
-                            handleClickEvent={(e) => handleOpenNav(e, 'header__menu')}
+                            handleClickEvent={(e) =>
+                                handleOpenNav(e, 'header__menu')
+                            }
                         />
                     </div>
                 </div>
