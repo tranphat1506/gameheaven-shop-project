@@ -18,6 +18,7 @@ const CardItem = memo(
         const handleViewPhoto = () => {
             navigate(`/photo?url=${itemImgUrl}`);
         };
+        console.log('item');
         return (
             <div
                 className={clsx([styles.item], {

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import SearchBox from './SearchBox';
 import Nav from './Navigator';
@@ -7,26 +8,32 @@ import API__HeaderNav from '~/test/api/HeaderNav.json';
 import HeaderSidebar, { BtnOpen } from './HeaderSidebar';
 import ShoppingCart from './ShoppingCart';
 const Header = () => {
+    const headerRef = useRef();
     // Header Nav Event
     const [currentNavOpen, setCurrentNavOpen] = useState('');
     const handleOpenNav = (e, className) => {
         if (currentNavOpen === className) return setCurrentNavOpen('');
         return setCurrentNavOpen(className);
     };
+    // scroll
+    useEffect(() => {
+        window.onscroll = (e) => {
+            if (!window.scrollY) return (headerRef.current.style = '');
+            if (window.scrollY > 110)
+                return (headerRef.current.style.transform =
+                    'translateY(-100%)');
+        };
+    }, []);
     // ------------------------
 
-    const redirectHome = () => {
-        return (window.location.href = '/');
-    };
-    console.log('re-render');
+    console.log('header render');
     return (
-        <header id="header">
+        <header id="header" ref={headerRef}>
             <div className="header__container">
-                <a
-                    href="/"
+                <Link
+                    to={'/'}
                     className={clsx('header__logo', 'logo__content')}
-                    onClick={redirectHome}
-                ></a>
+                />
                 <div className="nav__container">
                     <div className="nav--top">
                         {API__HeaderNav.topNav.map((navInfo, index) => {

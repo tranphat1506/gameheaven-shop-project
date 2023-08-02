@@ -83,7 +83,7 @@ const ShoppingCart = () => {
                             visibility: !store.totalItem ? 'hidden' : 'visible',
                         }}
                     >
-                        {store.totalItem}
+                        {store.totalItem > 99 && '99+'}
                     </span>
                 </div>
             </Wrapper>

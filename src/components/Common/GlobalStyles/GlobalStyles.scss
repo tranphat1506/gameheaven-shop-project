@@ -38,7 +38,8 @@ body {
 }
 /* Header CSS */
 #header {
-    z-index: 999;
+    transition: transform 300ms;
+    z-index: 99;
     position: fixed;
     height: auto;
     width: 100%;
@@ -84,6 +85,14 @@ input {
 #header .search-box {
     margin: 0 3em;
 }
+.search-box input:not(:placeholder-shown) {
+    & ~ .clear-icon {
+        display: flex;
+    }
+    & ~ .search-icon {
+        display: none;
+    }
+}
 .search-box:focus-within {
     outline: #ffffff 2px solid;
 }
@@ -91,19 +100,23 @@ input {
     font-size: 20px;
     color: var(--white);
 }
-.search-box .search-icon {
-    display: flex;
+.search-box .search-icon,
+.search-box .clear-icon {
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 5px;
     border-radius: 100%;
     cursor: pointer;
 }
-.search-box .search-icon:hover {
-    background-color: var(--white);
+.search-box .search-icon {
+    display: flex;
 }
-.search-box .search-icon:hover .--icon {
-    color: var(--black);
+.search-box .clear-icon {
+    display: none;
+}
+.search-box .search-icon:hover {
+    background-color: #ffffff1f;
 }
 .search-box input::placeholder {
     color: var(--white);
@@ -164,13 +177,13 @@ input {
     color: #fff;
 }
 .shopping-cart--total {
-    font-size: 7px;
+    font-size: 8px;
     display: block;
     position: absolute;
     text-align: center;
     left: 0;
     right: 0;
-    top: 1.9rem;
+    top: 1.8rem;
 }
 .btn--menu {
     display: inline-flex;
