@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
@@ -11,10 +11,16 @@ const Header = () => {
     const headerRef = useRef();
     // Header Nav Event
     const [currentNavOpen, setCurrentNavOpen] = useState('');
-    const handleOpenNav = (e, className) => {
-        if (currentNavOpen === className) return setCurrentNavOpen('');
-        return setCurrentNavOpen(className);
-    };
+    const handleSetCurrentNavOpen = useCallback((navClass = '') => {
+        setCurrentNavOpen(navClass);
+    }, []);
+    const handleOpenNav = useCallback(
+        (e, className) => {
+            if (currentNavOpen === className) return handleSetCurrentNavOpen();
+            return handleSetCurrentNavOpen(className);
+        },
+        [currentNavOpen],
+    );
     // scroll
     useEffect(() => {
         window.onscroll = (e) => {
@@ -23,6 +29,7 @@ const Header = () => {
                 return (headerRef.current.style.transform =
                     'translateY(-100%)');
         };
+        return (window.onscroll = () => {});
     }, []);
     // ------------------------
 
@@ -61,9 +68,7 @@ const Header = () => {
                         <ShoppingCart />
                         <BtnOpen
                             className={'btn--menu btn'}
-                            handleClickEvent={(e) =>
-                                handleOpenNav(e, 'header__menu')
-                            }
+                            handleClickEvent={handleOpenNav}
                         />
                     </div>
                 </div>
@@ -73,12 +78,13 @@ const Header = () => {
                     return <Nav key={index} {...navInfo} />;
                 })}
             </div>
-            <HeaderSidebar
-                API__HeaderNav={API__HeaderNav}
-                handleOpenNav={handleOpenNav}
-                setCurrentNavOpen={setCurrentNavOpen}
-                currentNavOpen={currentNavOpen}
-            />
+            {currentNavOpen === 'header__menu' && (
+                <HeaderSidebar
+                    API__HeaderNav={API__HeaderNav}
+                    handleOpenNav={handleOpenNav}
+                    setCurrentNavOpen={handleSetCurrentNavOpen}
+                />
+            )}
         </header>
     );
 };

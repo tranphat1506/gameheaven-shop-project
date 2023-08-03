@@ -79,7 +79,7 @@ input {
     display: inline-flex;
     align-items: center;
     background-color: var(--semi-black);
-    padding: 0.4rem 0.4rem 0.4rem 1.7rem;
+    padding: 0.7rem 0.7rem 0.7rem 1.7rem;
     border-radius: 5em;
 }
 #header .search-box {
@@ -93,8 +93,9 @@ input {
         display: none;
     }
 }
-.search-box:focus-within {
-    outline: #ffffff 2px solid;
+.search-box:focus-within,
+a:focus-within {
+    outline: #f00b51 2px solid;
 }
 .search-box .--icon {
     font-size: 20px;
@@ -123,8 +124,8 @@ input {
 }
 .search-box input {
     font-family: 'gamelord-regular';
-    font-size: 15px;
-    width: 28vw;
+    font-size: 17px;
+    width: 30vw;
     height: 2rem;
     background-color: #fff0;
     color: var(--white);
@@ -166,8 +167,8 @@ input {
 }
 .shopping-cart {
     padding: 0;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -177,18 +178,18 @@ input {
     color: #fff;
 }
 .shopping-cart--total {
-    font-size: 8px;
+    font-size: 10px;
     display: block;
     position: absolute;
     text-align: center;
-    left: 0;
+    left: 0.1rem;
     right: 0;
-    top: 1.8rem;
+    top: 2rem;
 }
 .btn--menu {
     display: inline-flex;
     align-items: center;
-    padding: 0.2em 0.4em;
+    padding: 0.4em;
     border-radius: 0.6em;
     background: #ffffff00;
 }
@@ -300,7 +301,7 @@ input {
     width: 29rem;
     height: 100%;
     background-color: #111;
-    padding: 0 0.5rem;
+    padding: 0 1.2rem 0 0.5rem;
 }
 .menu-close__btn {
     width: min-content;
@@ -314,6 +315,7 @@ input {
 }
 .header__menu .menu__container .nav__title-container {
     margin: 0.3rem;
+    height: 4rem;
 }
 .header__menu .menu__container .content {
     height: 100%;

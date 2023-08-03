@@ -1,11 +1,11 @@
-import { useReducer, useRef, useState, useMemo } from 'react';
+import { useReducer, useRef } from 'react';
 import clsx from 'clsx';
 
 import Wrapper from '../Wrapper';
 import { ShoppingPopper } from '../Popper';
 import FontIcon from '../Common/FontIcon';
 // item format
-const item = {
+/* const item = {
     itemName: '',
     itemImageUrl: '',
     itemPageUrl: '',
@@ -15,12 +15,12 @@ const item = {
         originalPrice: 0,
         salePrice: 0,
     },
-};
+}; */
 // init
 const initStore = {
     totalPrice: 0,
     totalItem: 0,
-    store: [],
+    store: {},
 };
 // actions
 const ADD_ITEM = 'add_item';
@@ -45,12 +45,14 @@ const reducer = (state, action) => {
     const item = action.payload;
     switch (action.type) {
         case ADD_ITEM:
+            const existItem = state.store[item.id];
+            const quantity = item.quantity;
+            if (existItem) item.quantity += existItem.quantity;
+            state.store[item.id] = item;
             newState = {
                 ...state,
-                totalItem: state.totalItem + item.quantity,
-                totalPrice:
-                    state.totalPrice + item.quantity * item.prices.salePrice,
-                store: [...state.store, item],
+                totalItem: state.totalItem + quantity,
+                totalPrice: state.totalPrice + quantity * item.prices.salePrice,
             };
             break;
         default:
@@ -76,14 +78,14 @@ const ShoppingCart = () => {
                 }}
             >
                 <div className="info">
-                    <FontIcon logoName={'shopping_bag'} fontSize={30} />
+                    <FontIcon logoName={'shopping_bag'} fontSize={37} />
                     <span
                         className="shopping-cart--total"
                         style={{
                             visibility: !store.totalItem ? 'hidden' : 'visible',
                         }}
                     >
-                        {store.totalItem > 99 && '99+'}
+                        {store.totalItem > 99 ? '99+' : store.totalItem}
                     </span>
                 </div>
             </Wrapper>

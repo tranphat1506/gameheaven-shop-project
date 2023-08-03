@@ -3,14 +3,21 @@ import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
 import FontIcon from '~/components/Common/FontIcon';
 import styles from './ReviewMedia.module.scss';
+import { useEffect } from 'react';
 const ReviewImg = () => {
     const navigate = useNavigate();
     const handleReturn = () => {
         return navigate(-1);
     };
-    const params = useParams();
+    //const params = useParams();
     const [search, setSearch] = useSearchParams('');
     const blobUrl = search.get('url');
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style = '';
+        };
+    }, []);
     return (
         <div className={clsx([styles['imgReview']])}>
             <div className={clsx(styles.toolContainer)}>

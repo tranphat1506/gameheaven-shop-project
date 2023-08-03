@@ -1,10 +1,11 @@
 import styles from './Popper.module.scss';
 import clsx from 'clsx';
-import { useEffect, useMemo, useRef, useState, memo } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import formatMoneyUtils from '~/utils/FormatMoney';
 import FontIcon from '../Common/FontIcon';
-
+import SteamCard from '~/assets/img/STEAMCARD-20-USD.png';
+import SteamCard2 from '~/assets/img/5d0a3a0146177c6108026182.webp';
 const formatMoney = formatMoneyUtils('vi-VN', 'VND');
 const CardItem = memo(
     ({ itemName, itemImgUrl, itemPageUrl, quantity, prices }) => {
@@ -12,8 +13,8 @@ const CardItem = memo(
         const imgRef = useRef();
         const { isDiscount, originalPrice, salePrice } = prices;
         const [totalPrice, totalSalePrice] = [
-            formatMoney.format(originalPrice * quantity),
-            formatMoney.format(salePrice * quantity),
+            formatMoney.format(originalPrice),
+            formatMoney.format(salePrice),
         ];
         const handleViewPhoto = () => {
             navigate(`/photo?url=${itemImgUrl}`);
@@ -81,11 +82,11 @@ const ShoppingPopper = ({ wrapperClass, itemStore, state }) => {
                         const action = {
                             type: 'add_item',
                             payload: {
+                                id: 120,
                                 itemName: 'Thẻ Steam 100 HKD',
-                                itemImgUrl:
-                                    'https://didongviet.vn/dchannel/wp-content/uploads/2022/11/maxresdefault-16.jpg',
+                                itemImgUrl: SteamCard2,
                                 itemPageUrl: '/SteamCard/123123',
-                                quantity: 100,
+                                quantity: 10,
                                 prices: {
                                     isDiscount: false,
                                     salePrice: 320000,
@@ -99,8 +100,11 @@ const ShoppingPopper = ({ wrapperClass, itemStore, state }) => {
                 </span>
                 <div className={clsx([styles['main-container']])}>
                     <div className={clsx([styles['items-container']])}>
-                        {store.store.map((item, index) => {
-                            return <CardItem key={index} {...item} />;
+                        {Object.keys(store.store).map((key) => {
+                            console.log({ ...store['store'][key] });
+                            return (
+                                <CardItem key={key} {...store['store'][key]} />
+                            );
                         })}
                     </div>
                     <div className={clsx([styles['details-container']])}>
@@ -110,11 +114,12 @@ const ShoppingPopper = ({ wrapperClass, itemStore, state }) => {
                                 const action = {
                                     type: 'add_item',
                                     payload: {
+                                        id: 300,
                                         itemName: 'Thẻ Steam 100 HKD',
                                         itemImgUrl:
                                             'https://didongviet.vn/dchannel/wp-content/uploads/2022/11/maxresdefault-16.jpg',
                                         itemPageUrl: '/SteamCard/123123',
-                                        quantity: 100,
+                                        quantity: 1,
                                         prices: {
                                             isDiscount: false,
                                             salePrice: 320000,

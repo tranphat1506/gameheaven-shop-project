@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FontIcon from '../Common/FontIcon';
 const SearchBox = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -19,6 +19,9 @@ const SearchBox = () => {
         if (!value) return searchInputRef.current.focus();
         console.log('Search ', value);
     };
+    const handleCleanSearchInput = () => {
+        searchInputRef.current.value = '';
+    };
 
     return (
         <div className="search-box">
@@ -38,7 +41,7 @@ const SearchBox = () => {
                     fontSize={20}
                 />
             </div>
-            <div className="clear-icon" onClick={handleSearching}>
+            <div className="clear-icon" onClick={handleCleanSearchInput}>
                 <FontIcon
                     className="--icon --icon-clear"
                     logoName="cancel"
