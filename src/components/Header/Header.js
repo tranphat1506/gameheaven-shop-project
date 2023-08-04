@@ -78,13 +78,11 @@ const Header = () => {
                     return <Nav key={index} {...navInfo} />;
                 })}
             </div>
-            {currentNavOpen === 'header__menu' && (
-                <HeaderSidebar
-                    API__HeaderNav={API__HeaderNav}
-                    handleOpenNav={handleOpenNav}
-                    setCurrentNavOpen={handleSetCurrentNavOpen}
-                />
-            )}
+            <HeaderSidebar
+                API__HeaderNav={API__HeaderNav}
+                handleOpenNav={handleOpenNav}
+                currentNavState={[currentNavOpen, handleSetCurrentNavOpen]}
+            />
         </header>
     );
 };

@@ -14,8 +14,9 @@ export const BtnOpen = ({ className, handleClickEvent }) => {
         </div>
     );
 };
-const HeaderMenu = ({ API__HeaderNav, handleOpenNav, setCurrentNavOpen }) => {
+const HeaderMenu = ({ API__HeaderNav, handleOpenNav, currentNavState }) => {
     console.log('sidebar render');
+    const [currentNavOpen, setCurrentNavOpen] = currentNavState;
     const menuRef = useRef();
     const handleClickOut = (e) => {
         if (e.target === menuRef.current) setCurrentNavOpen('');
@@ -25,7 +26,7 @@ const HeaderMenu = ({ API__HeaderNav, handleOpenNav, setCurrentNavOpen }) => {
             ref={menuRef}
             onClick={handleClickOut}
             className={clsx('header__menu', {
-                'open--header-menu': 1,
+                'open--header-menu': currentNavOpen === 'header__menu',
             })}
         >
             <div
