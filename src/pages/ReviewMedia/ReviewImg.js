@@ -14,8 +14,14 @@ const ReviewImg = () => {
     const blobUrl = search.get('url');
     useEffect(() => {
         document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', ({ key }) => {
+            if (key.toLowerCase() === 'escape') return handleReturn();
+        });
         return () => {
             document.body.style = '';
+            window.removeEventListener('keydown', ({ key }) => {
+                if (key.toLowerCase() === 'escape') return handleReturn();
+            });
         };
     }, []);
     return (

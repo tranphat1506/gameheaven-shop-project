@@ -1,22 +1,47 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, memo, useCallback } from 'react';
 import FontIcon from '../Common/FontIcon';
+import { SearchSuggesstionPopper } from '../Popper';
+import Wrapper from '../Wrapper';
+import Tippy from '@tippyjs/react';
 const SearchBox = () => {
     const [searchValue, setSearchValue] = useState('');
     const searchInputRef = useRef();
-
+    console.log('sB');
     const handleOnChange = (e) => {
         // on change search input
         const currentData = e.target.value.trim();
-        setSearchValue(currentData);
-        console.clear();
-        console.log(searchValue);
+        console.log(currentData);
+        handleSetSearchValue(currentData);
     };
+
+    const handleSetSearchValue = useCallback((value) => {
+        setSearchValue(value);
+    }, []);
 
     const handleOnKeyDown = ({ key }) => {
         // on enter to search
         if (key.toLowerCase() === 'enter') handleSearching();
     };
 
+    const handleSearching = useCallback(() => {
+        // on click on search icon
+        const value = searchValue.trim();
+        if (!value) return searchInputRef.current.focus();
+        console.log('Direct to /search?v=', value);
+    }, [searchValue]);
+
+    // clean search
+    const handleCleanSearchInput = () => {
+        setSearchValue('');
+        searchInputRef.current.value = '';
+        searchInputRef.current.focus();
+    };
+
+    // suggest
+    const handleSearchSuggestion = useCallback(() => {
+        const suggestKeyword = searchValue.trim();
+        if (!suggestKeyword) return false;
+    }, [searchValue]);
     // Effect user search something
     useEffect(() => {
         const id = setTimeout(() => {
@@ -27,31 +52,12 @@ const SearchBox = () => {
         };
     }, [searchValue]);
 
-    const handleSearchSuggestion = () => {
-        const suggestKeyword = searchInputRef.current.value;
-        if (!suggestKeyword) return console.log('Suggest trend item...');
-        return console.log(`Suggest ${suggestKeyword}`);
-    };
-
-    const handleSearching = () => {
-        // on click on search icon
-        const value = searchInputRef.current.value.trim();
-        if (!value) return searchInputRef.current.focus();
-        console.log('Direct to /search?v=', value);
-    };
-
-    // clean search
-    const handleCleanSearchInput = () => {
-        searchInputRef.current.value = '';
-        searchInputRef.current.focus();
-    };
-
     return (
         <div className="search-box">
             <input
                 ref={searchInputRef}
                 className="search-box__input"
-                title="Tìm gì đó đi nào..."
+                title="Tìm kiếm"
                 type="text"
                 placeholder="Tìm game gì đó đi nào..."
                 onChange={handleOnChange}
@@ -72,8 +78,12 @@ const SearchBox = () => {
                     fill={1}
                 />
             </div>
+            <SearchSuggesstionPopper
+                suggestList={searchValue}
+                searchValue={searchValue}
+            />
         </div>
     );
 };
 
-export default SearchBox;
+export default memo(SearchBox);

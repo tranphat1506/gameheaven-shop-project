@@ -16,25 +16,25 @@ const Wrapper = forwardRef(
             switch (event) {
                 case 'click':
                     ref.current.addEventListener('click', (e) => {
-                        return handleShow(!show);
+                        handleShow(!show);
                     });
                     break;
                 default:
                     ref.current.addEventListener('mouseenter', (e) => {
-                        return handleShow(true);
+                        handleShow(true);
                     });
                     ref.current.addEventListener('mouseleave', (e) => {
-                        return handleShow(false);
+                        handleShow(false);
                     });
             }
-        }, [show]);
+        }, []);
         return (
             <>
                 {children}
                 <Component
                     wrapperClass={wrapperClass}
                     {...refProps}
-                    state={[show, setShow]}
+                    state={[show, handleShow]}
                 />
             </>
         );
