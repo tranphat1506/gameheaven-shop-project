@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState, memo, useCallback } from 'react';
+import React, { useRef, useState, memo, useCallback } from 'react';
 import FontIcon from '../Common/FontIcon';
-import { SearchSuggesstionPopper } from '../Popper';
-import Wrapper from '../Wrapper';
-import Tippy from '@tippyjs/react';
+import { useNavigate } from 'react-router-dom';
 const SearchBox = () => {
     const [searchValue, setSearchValue] = useState('');
     const searchInputRef = useRef();
-    console.log('sB');
+    const navigate = useNavigate();
     const handleOnChange = (e) => {
         // on change search input
         const currentData = e.target.value.trim();
-        console.log(currentData);
         handleSetSearchValue(currentData);
     };
 
@@ -27,7 +24,7 @@ const SearchBox = () => {
         // on click on search icon
         const value = searchValue.trim();
         if (!value) return searchInputRef.current.focus();
-        console.log('Direct to /search?v=', value);
+        navigate('/search?v=' + value);
     }, [searchValue]);
 
     // clean search
@@ -36,21 +33,6 @@ const SearchBox = () => {
         searchInputRef.current.value = '';
         searchInputRef.current.focus();
     };
-
-    // suggest
-    const handleSearchSuggestion = useCallback(() => {
-        const suggestKeyword = searchValue.trim();
-        if (!suggestKeyword) return false;
-    }, [searchValue]);
-    // Effect user search something
-    useEffect(() => {
-        const id = setTimeout(() => {
-            handleSearchSuggestion();
-        }, 500);
-        return () => {
-            clearTimeout(id);
-        };
-    }, [searchValue]);
 
     return (
         <div className="search-box">
@@ -78,10 +60,6 @@ const SearchBox = () => {
                     fill={1}
                 />
             </div>
-            <SearchSuggesstionPopper
-                suggestList={searchValue}
-                searchValue={searchValue}
-            />
         </div>
     );
 };

@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { useCartStore } from '~/hooks/useCartStore';
+import { storeActions } from '~/contexts/CartStore';
+import * as gbConst from '~/global_constants';
 
 import SearchBox from './SearchBox';
 import Nav from './Navigator';
@@ -9,6 +12,30 @@ import HeaderSidebar, { BtnOpen } from './HeaderSidebar';
 import ShoppingCart from './ShoppingCart';
 const Header = () => {
     const headerRef = useRef();
+    const [store, dispatch] = useCartStore();
+    useEffect(() => {
+        console.log('Load store');
+        const fetchCart = async () => {
+            try {
+                const r = await fetch(
+                    gbConst.BE_URL + '/api/cart/get_cart_info',
+                    {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: '25f759d9-883d-4749-b063-1a2d9b0fee08',
+                        }),
+                    },
+                );
+                const payload = (await r.json()).payload;
+                dispatch(storeActions.loadStore(payload));
+            } catch (error) {}
+        };
+        fetchCart();
+    }, []);
     // Header Nav Event
     const [currentNavOpen, setCurrentNavOpen] = useState('');
     const handleSetCurrentNavOpen = useCallback((navClass = '') => {
@@ -32,7 +59,6 @@ const Header = () => {
         return (window.onscroll = () => {});
     }, []);
     // ------------------------
-
     console.log('header render');
     return (
         <header id="header" ref={headerRef}>

@@ -4,11 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/Common/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
+import { CartStoreProvider } from './contexts/CartStore';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <GlobalStyles>
-            <App />
+            <CartStoreProvider>
+                <App />
+            </CartStoreProvider>
         </GlobalStyles>
     </BrowserRouter>,
 );
