@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bfb6c507.css",
+    "main.js": "/static/js/main.db02199c.js",
+    "static/js/787.24c0456c.chunk.js": "/static/js/787.24c0456c.chunk.js",
+    "static/media/STEAMCARD-20-USD.png": "/static/media/STEAMCARD-20-USD.e4e998e593a96d524e86.png",
+    "static/media/MavenPro-Bold.ttf": "/static/media/MavenPro-Bold.ef6a943199f0d93f875e.ttf",
+    "static/media/MavenPro-Medium.ttf": "/static/media/MavenPro-Medium.5c573586d51e1f18df66.ttf",
+    "static/media/MavenPro-Regular.ttf": "/static/media/MavenPro-Regular.338a20c4765ae0ad3b13.ttf",
+    "static/media/webp": "/static/media/5d0a3a0146177c6108026182.1f82e1e0f96ec4d2852c.webp",
+    "static/media/image_not_found.png": "/static/media/image_not_found.8b3bd8c280d06dddd291.png",
+    "static/media/game-heaven-high-resolution-logo-color-on-transparent-background.png": "/static/media/game-heaven-high-resolution-logo-color-on-transparent-background.8ef52ade912c9f6b67e6.png",
+    "index.html": "/index.html",
+    "main.bfb6c507.css.map": "/static/css/main.bfb6c507.css.map",
+    "main.db02199c.js.map": "/static/js/main.db02199c.js.map",
+    "787.24c0456c.chunk.js.map": "/static/js/787.24c0456c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bfb6c507.css",
+    "static/js/main.db02199c.js"
+  ]
+}
